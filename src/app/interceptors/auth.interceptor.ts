@@ -4,17 +4,17 @@ import { catchError, throwError } from 'rxjs';
 import { UserService } from '../services/user.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  console.log('authInterceptor');
+  // console.log('authInterceptor');
 
   const userService = inject(UserService);
 
-  let loggedUserData;
+  let loggedUserData = {token: ''};
   const localData = localStorage.getItem('TokenData');
   if (localData != null) {
     loggedUserData = JSON.parse(localData);
   }
 
-  // console.log('LocalTokenData:', localData);
+  console.log('LocalTokenData:', localData);
 
   const cloneRequest = req.clone({
     setHeaders: {
@@ -22,11 +22,14 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     }
   });
 
-  // console.log('CLONE:' , cloneRequest);
-  // console.log('AUTH-CLONE');
+  console.log('CLONE:' , cloneRequest);
+  console.log('AUTH-CLONE');
 
-  return next(cloneRequest).pipe(
+  // return next(req);
+  return next(cloneRequest)
+  .pipe(
     catchError((error) => {
+      console.log(':Intcpt:catchError');
       if (error.status === 401) {
         const isRefresh  = confirm('Your Session is Expared. Do you to Continue');
         if (isRefresh) {
@@ -36,4 +39,5 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       return throwError(error);
     })
   );
+/**/
 };

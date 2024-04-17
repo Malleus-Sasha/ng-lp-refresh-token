@@ -31,6 +31,8 @@ export class LoginComponent {
       (res) => {
         if (res.result) {
           localStorage.setItem('TokenData', JSON.stringify(res.data));
+          localStorage.setItem('TokenEmail', res.data.emailId);
+          localStorage.setItem('TokenUserId', `${res.data.userId}`);
           this.router.navigateByUrl('dashboard');
         } else {
           alert(res.message);
