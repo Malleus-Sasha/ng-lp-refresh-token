@@ -12,6 +12,9 @@ export class DashboardComponent {
   userList = [];
   constructor(private userService: UserService) {
     this.getUsers();
+    this.userService.$refreshTokenReceived.subscribe((res: any) => {
+      this.getUsers();
+    })
     console.log("Users: ", this.userList);
   }
 

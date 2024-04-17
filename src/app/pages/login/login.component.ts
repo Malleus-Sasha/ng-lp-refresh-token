@@ -14,8 +14,8 @@ import { Router, RouterLink } from '@angular/router';
 export class LoginComponent {
 
   form = new FormGroup({
-    EmailId: new FormControl('rahul@gmail.com', { nonNullable: true, validators: [Validators.required] }),
-    Password: new FormControl('223344', { nonNullable: true, validators: [Validators.required] }),
+    emailId: new FormControl('rahul@gmail.com', { nonNullable: true, validators: [Validators.required] }),
+    password: new FormControl('223344', { nonNullable: true, validators: [Validators.required] }),
   })
   // router = inject(Router);
 
