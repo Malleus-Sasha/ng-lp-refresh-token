@@ -11,9 +11,19 @@
               <i class='bx bxs-lock-alt'></i>
           </div>
           <div class="remember-forgot">
-              
+            <label><input type="checkbox">Remember me
+            </label>
+            <a href="#">Forgot password?</a>
           </div>
-          <button class="btn">Login</button>
+          <button [disabled]="form.invalid" class="btn">Login</button>
+
+          <div class="register-link">
+            <p>Dont't have an account? 
+              <a href="#">Register</a>
+              <a routerLink="dashboard">dashboard</a>
+              <button type="button" (click)="getUsers()">allUsers</button>
+            </p>
+          </div>
       </form>
   </div>
 </div>

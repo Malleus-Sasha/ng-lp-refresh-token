@@ -94,6 +94,16 @@
     color: #333;
     font-weight: 600;
 }
+
+.wrapper .btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.wrapper .btn:not(:disabled):hover {
+    /* 6e3dd1 */
+    background: #ebe0ff;
+}
 .wrapper .register-link{
    text-align: center;
     font-size: 14.5px;
